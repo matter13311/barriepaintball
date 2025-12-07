@@ -1,0 +1,25 @@
+phone call or email
+outlook calendar
+
+max-capacity: 150 people at one time.
+
+number of staff is determined beforehand.
+
+reservation details requirements:
+how many people. at least 6 people to open.
+date and time
+private event: yes or no?
+    if private, have at least 20 people, or pay for 20 people equivalent. 
+
+walk ons -> any group with less than 20 people are walk on group. if it's not private
+
+
+summer: saturday and sunday guaranteed people.
+
+during winter: if someone books 2 weeks in advance, with a group of 5 people, hope will say if nobody else comes in that day, then they'll say that reservation is tentataive.
+
+
+
+
+war theme style.
+selling point is bigger, better, more fields and closer to greater toronto area. 
