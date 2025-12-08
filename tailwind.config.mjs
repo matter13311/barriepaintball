@@ -96,6 +96,7 @@ const config = {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        stencil: ['var(--font-black-ops)', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {

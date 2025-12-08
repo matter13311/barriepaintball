@@ -14,43 +14,74 @@
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Military Woodland Theme - Light */
+    --background: 44 24% 90%; /* Sand / Parchment */
+    --foreground: 210 20% 20%; /* Dark Steel Text */
 
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 44 20% 86%; /* Slightly darker sand for cards */
+    --card-foreground: 210 20% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 44 24% 90%;
+    --popover-foreground: 210 20% 20%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 66 50% 28%; /* Olive Drab Green */
+    --primary-foreground: 44 24% 90%; /* Light Sand Text */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 15% 40%; /* Steel Grey */
+    --secondary-foreground: 255 255 255;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 44 15% 80%;
+    --muted-foreground: 210 10% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 30% 50%; /* Rust/Leather */
+    --accent-foreground: 255 255 255;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 65% 40%; /* Deep Red */
+    --destructive-foreground: 255 255 255;
 
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 15% 30%; /* Steel Border */
+    --input: 210 15% 30%;
+    --ring: 66 50% 28%;
 
-    --radius: 0.2rem;
+    --radius: 0rem; /* Boxy / Rugged */
 
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
+    --success: 120 40% 40%;
+    --warning: 40 80% 60%;
+    --error: 0 65% 50%;
   }
 
+  .dark {
+    /* Military Woodland Theme - Dark */
+    --background: 80 15% 12%; /* Deep Forest Green */
+    --foreground: 44 24% 85%; /* Light Sand Text */
 
-}
+    --card: 80 15% 16%;
+    --card-foreground: 44 24% 85%;
+
+    --popover: 80 15% 12%;
+    --popover-foreground: 44 24% 85%;
+
+    --primary: 66 40% 45%; /* Brighter Olive for dark mode */
+    --primary-foreground: 255 255 255;
+
+    --secondary: 210 15% 50%;
+    --secondary-foreground: 255 255 255;
+
+    --muted: 80 15% 20%;
+    --muted-foreground: 44 15% 65%;
+
+    --accent: 25 40% 50%;
+    --accent-foreground: 255 255 255;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 255 255 255;
+
+    --border: 80 10% 25%;
+    --input: 80 10% 25%;
+    --ring: 66 40% 45%;
+  }
+  }
+
 
 @layer base {
   * {

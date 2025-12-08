@@ -14,17 +14,25 @@ export async function Footer() {
   const navItems = footerData?.navItems || []
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
-        <Link className="flex items-center" href="/">
-          <Logo />
-        </Link>
+    <footer className="mt-auto border-t-4 border-secondary bg-primary text-primary-foreground">
+      <div className="container py-12 gap-8 flex flex-col md:flex-row md:justify-between items-center">
+        <div className="flex flex-col gap-4">
+          <Link className="flex items-center" href="/">
+            <div className="font-stencil text-2xl uppercase tracking-widest text-primary-foreground">
+               Barrie Paintball
+            </div>
+          </Link>
+          <div className="flex flex-col opacity-80 text-sm">
+             <p>123 Paintball Road, Barrie, ON</p>
+             <p>555-0199 | info@barriepaintball.com</p>
+          </div>
+        </div>
 
         <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
           <ThemeSelector />
           <nav className="flex flex-col md:flex-row gap-4">
             {navItems.map(({ link }, i) => {
-              return <CMSLink className="text-white" key={i} {...link} />
+              return <CMSLink className="text-primary-foreground hover:underline" key={i} {...link} />
             })}
           </nav>
         </div>
