@@ -1,12 +1,12 @@
 import type { Metadata } from 'next/types'
 
-import { CollectionArchive } from '@/components/CollectionArchive'
+
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import { Search } from '@/search/Component'
 import PageClient from './page.client'
-import { CardPostData } from '@/components/Card'
+import { Card, CardPostData } from '@/components/Card'
 
 type Args = {
   searchParams: Promise<{
@@ -73,7 +73,15 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
       </div>
 
       {posts.totalDocs > 0 ? (
-        <CollectionArchive posts={posts.docs as CardPostData[]} />
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 items-stretch">
+            {posts.docs.map((doc, index) => (
+              <div key={index} className="grid-item">
+                <Card doc={doc as CardPostData} relationTo="pages" showCategories />
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="container">No results found.</div>
       )}
