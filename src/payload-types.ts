@@ -195,7 +195,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -633,6 +633,16 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingsBlock".
+ */
+export interface PricingsBlock {
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricings';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -702,7 +712,7 @@ export interface Pricing {
     };
     [k: string]: unknown;
   };
-  image?: (number | null) | Media;
+  priority?: number | null;
   categories?: (number | Category)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -1009,6 +1019,7 @@ export interface PagesSelect<T extends boolean = true> {
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        pricings?: T | PricingsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1091,6 +1102,15 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingsBlock_select".
+ */
+export interface PricingsBlockSelect<T extends boolean = true> {
+  title?: T;
   id?: T;
   blockName?: T;
 }
@@ -1238,7 +1258,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface PricingsSelect<T extends boolean = true> {
   name?: T;
   content?: T;
-  image?: T;
+  priority?: T;
   categories?: T;
   updatedAt?: T;
   createdAt?: T;
