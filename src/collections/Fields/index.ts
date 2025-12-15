@@ -15,9 +15,15 @@ export const Fields: CollectionConfig = {
             type: 'text',
         },
         {
+            name: 'description',
+            type: 'text',
+        },
+        {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
+            required: true,
+            hasMany: true
         }
     ],
 }

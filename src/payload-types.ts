@@ -72,6 +72,7 @@ export interface Config {
     categories: Category;
     users: User;
     pricings: Pricing;
+    fields: Field;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -94,6 +95,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     pricings: PricingsSelect<false> | PricingsSelect<true>;
+    fields: FieldsSelect<false> | FieldsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -719,6 +721,19 @@ export interface Pricing {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fields".
+ */
+export interface Field {
+  id: number;
+  name?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  image: (number | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -921,6 +936,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pricings';
         value: number | Pricing;
+      } | null)
+    | ({
+        relationTo: 'fields';
+        value: number | Field;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1260,6 +1279,18 @@ export interface PricingsSelect<T extends boolean = true> {
   content?: T;
   priority?: T;
   categories?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fields_select".
+ */
+export interface FieldsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
