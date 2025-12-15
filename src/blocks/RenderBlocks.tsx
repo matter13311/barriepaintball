@@ -9,6 +9,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { PackagesBlock } from '@/blocks/PackagesBlock/Component'
 import { PricingsBlock } from '@/blocks/PricingsBlock/Component'
 import { FieldsBlock } from '@/blocks/FieldsBlock/Component'
+import { EventsBlock } from '@/blocks/EventsBlock/Component'
 
 const blockComponents = {
   content: ContentBlock,
@@ -18,6 +19,7 @@ const blockComponents = {
   packages: PackagesBlock,
   pricings: PricingsBlock,
   fields: FieldsBlock,
+  events: EventsBlock,
 }
 
 export const RenderBlocks: React.FC<{

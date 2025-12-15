@@ -73,6 +73,7 @@ export interface Config {
     users: User;
     pricings: Pricing;
     fields: Field;
+    events: Event;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -96,6 +97,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     pricings: PricingsSelect<false> | PricingsSelect<true>;
     fields: FieldsSelect<false> | FieldsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -197,7 +199,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock | FieldsBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock | FieldsBlock | EventsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -655,6 +657,16 @@ export interface FieldsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsBlock".
+ */
+export interface EventsBlock {
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'events';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -739,6 +751,33 @@ export interface Field {
   slug?: string | null;
   description?: string | null;
   image: (number | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  name?: string | null;
+  eventDate?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -952,6 +991,10 @@ export interface PayloadLockedDocument {
         value: number | Field;
       } | null)
     | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1050,6 +1093,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         pricings?: T | PricingsBlockSelect<T>;
         fields?: T | FieldsBlockSelect<T>;
+        events?: T | EventsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1149,6 +1193,15 @@ export interface PricingsBlockSelect<T extends boolean = true> {
  * via the `definition` "FieldsBlock_select".
  */
 export interface FieldsBlockSelect<T extends boolean = true> {
+  title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsBlock_select".
+ */
+export interface EventsBlockSelect<T extends boolean = true> {
   title?: T;
   id?: T;
   blockName?: T;
@@ -1311,6 +1364,18 @@ export interface FieldsSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  name?: T;
+  eventDate?: T;
+  description?: T;
+  publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
