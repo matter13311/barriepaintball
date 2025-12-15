@@ -197,7 +197,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock | FieldsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -645,6 +645,16 @@ export interface PricingsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FieldsBlock".
+ */
+export interface FieldsBlock {
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fields';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -1039,6 +1049,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         pricings?: T | PricingsBlockSelect<T>;
+        fields?: T | FieldsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1129,6 +1140,15 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "PricingsBlock_select".
  */
 export interface PricingsBlockSelect<T extends boolean = true> {
+  title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FieldsBlock_select".
+ */
+export interface FieldsBlockSelect<T extends boolean = true> {
   title?: T;
   id?: T;
   blockName?: T;
