@@ -10,7 +10,6 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { PricingsBlock } from '../../blocks/PricingsBlock/config'
 import { FieldsBlock } from '../../blocks/FieldsBlock/config'
 import { EventsBlock } from '../../blocks/EventsBlock/config'
-import { Banner } from '../../blocks/Banner/config'
 import { PackagesBlock } from '@/blocks/PackagesBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
@@ -85,7 +84,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 PricingsBlock,
                 FieldsBlock,
                 EventsBlock,
-                Banner,
                 PackagesBlock,
               ],
               required: true,
