@@ -199,7 +199,17 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | FormBlock | PricingsBlock | FieldsBlock | EventsBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | FormBlock
+    | PricingsBlock
+    | FieldsBlock
+    | EventsBlock
+    | BannerBlock
+    | PackagesBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -667,6 +677,56 @@ export interface EventsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock".
+ */
+export interface BannerBlock {
+  style: 'info' | 'warning' | 'error' | 'success';
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PackagesBlock".
+ */
+export interface PackagesBlock {
+  title: string;
+  items?:
+    | {
+        name: string;
+        price: string;
+        description?: string | null;
+        features?:
+          | {
+              feature?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        highlight?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'packages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -749,7 +809,21 @@ export interface Field {
   id: number;
   name?: string | null;
   slug?: string | null;
-  description?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   image: (number | Media)[];
   updatedAt: string;
   createdAt: string;
@@ -1094,6 +1168,8 @@ export interface PagesSelect<T extends boolean = true> {
         pricings?: T | PricingsBlockSelect<T>;
         fields?: T | FieldsBlockSelect<T>;
         events?: T | EventsBlockSelect<T>;
+        banner?: T | BannerBlockSelect<T>;
+        packages?: T | PackagesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1203,6 +1279,40 @@ export interface FieldsBlockSelect<T extends boolean = true> {
  */
 export interface EventsBlockSelect<T extends boolean = true> {
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock_select".
+ */
+export interface BannerBlockSelect<T extends boolean = true> {
+  style?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PackagesBlock_select".
+ */
+export interface PackagesBlockSelect<T extends boolean = true> {
+  title?: T;
+  items?:
+    | T
+    | {
+        name?: T;
+        price?: T;
+        description?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
+        highlight?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

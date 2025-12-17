@@ -1,13 +1,12 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import type { Field, Media } from '@/payload-types'
-import { cn } from '@/utilities/ui'
+import type { Field } from '@/payload-types'
 import { Carousel } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
-
+import RichText from '@/components/RichText'
 export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
   const payload = await getPayload({ config })
 
@@ -28,7 +27,7 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
 
   return (
     <div className="container my-16">
-       {title && (
+      {title && (
         <h2 className="mb-12 text-center text-4xl font-stencil uppercase tracking-widest text-primary dark:text-foreground">
           {title}
         </h2>
@@ -42,18 +41,11 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                 {fields.map((field) => {
                   // Get the first image only
                   const img = Array.isArray(field.image) ? field.image[0] : field.image
-                  const imageSrc =
-                    typeof img === 'object' && img?.url ? img.url : null
-                  const imageAlt =
-                    typeof img === 'object' && img?.alt
-                      ? img.alt
-                      : 'Field Image'
+                  const imageSrc = typeof img === 'object' && img?.url ? img.url : null
+                  const imageAlt = typeof img === 'object' && img?.alt ? img.alt : 'Field Image'
 
                   return (
-                    <div
-                      key={field.id}
-                      className="flex flex-col gap-6 w-full"
-                    >
+                    <div key={field.id} className="flex flex-col gap-6 w-full">
                       {/* Media Section - Takes 2/5 on large screens */}
                       <div className="relative w-full h-[40rem] rounded-lg overflow-hidden">
                         {imageSrc ? (
@@ -78,17 +70,16 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                           </h3>
 
                           {field.description && (
-                            <p className="max-w-prose text-lg text-muted-foreground leading-relaxed">
-                              {field.description}
-                            </p>
+                            <div className="max-w-prose text-lg text-muted-foreground leading-relaxed">
+                              <RichText data={field.description} />
+                            </div>
                           )}
                         </div>
 
-
                         <div className="mt-auto">
-                           <Button variant="outline" size="sm" asChild>
-                             <Link href={`/fields/${field.slug}`}>More Info</Link>
-                           </Button>
+                          <Button variant="outline" size="sm" asChild>
+                            <Link href={`/fields/${field.slug}`}>More Info</Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -96,17 +87,15 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                 })}
               </Carousel>
             </div>
-            
+
             <div className="flex justify-center">
-                 <Button size="lg" asChild>
-                    <Link href="/fields">View All Fields</Link>
-                 </Button>
+              <Button size="lg" asChild>
+                <Link href="/fields">View All Fields</Link>
+              </Button>
             </div>
           </>
         ) : (
-          <div className="text-center text-muted-foreground py-12">
-            No fields available
-          </div>
+          <div className="text-center text-muted-foreground py-12">No fields available</div>
         )}
       </div>
     </div>

@@ -10,6 +10,7 @@ import { PackagesBlock } from '@/blocks/PackagesBlock/Component'
 import { PricingsBlock } from '@/blocks/PricingsBlock/Component'
 import { FieldsBlock } from '@/blocks/FieldsBlock/Component'
 import { EventsBlock } from '@/blocks/EventsBlock/Component'
+import { BannerBlock } from '@/blocks/Banner/Component'
 
 const blockComponents = {
   content: ContentBlock,
@@ -20,6 +21,8 @@ const blockComponents = {
   pricings: PricingsBlock,
   fields: FieldsBlock,
   events: EventsBlock,
+  PackagesBlock: PackagesBlock,
+  banner: BannerBlock,
 }
 
 export const RenderBlocks: React.FC<{

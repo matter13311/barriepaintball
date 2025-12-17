@@ -42,7 +42,7 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
         {events && events.length > 0 ? (
           events.map((event) => {
             const dateObj = event.eventDate ? new Date(event.eventDate) : null
-            
+
             return (
               <div
                 key={event.id}
@@ -50,32 +50,31 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                   'group relative flex flex-col overflow-hidden bg-card border-none ring-1 ring-border',
                   // "Mission Brief" styling: top border accent
                   'before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-primary before:transition-all before:duration-300',
-                  'hover:before:h-2 hover:shadow-lg transition-all duration-300'
+                  'hover:before:h-2 hover:shadow-lg transition-all duration-300',
                 )}
               >
-                {/* Date Badge - Stencil Look */}
-                {dateObj && (
-                  <div className="absolute top-4 right-4 flex flex-col items-center justify-center bg-background/90 p-2 text-center border border-border shadow-sm">
-                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      {dateObj.toLocaleDateString('en-US', { month: 'short' })}
-                    </span>
-                    <span className="text-2xl font-black font-stencil text-primary">
-                      {dateObj.getDate()}
-                    </span>
-                  </div>
-                )}
-
-                <div className="p-6 pt-12 flex flex-col flex-grow">
+                <div className="p-6 flex flex-col flex-grow">
                   {/* Header */}
-                  <div className="mb-4">
-                     <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                       <CalendarDays size={14} />
-                       <span>Mission Date</span>
-                     </div>
-                     <h3 className="text-2xl font-bold uppercase font-stencil text-foreground group-hover:text-primary transition-colors">
-                       {event.name}
-                     </h3>
+                  <div className="flex items-center mb-4 justify-between gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    <div className="flex gap-2">
+                      <CalendarDays size={14} />
+                      <span>Date Of Event</span>
+                    </div>
+                    {/* Date Badge - Stencil Look */}
+                    {dateObj && (
+                      <div className="flex flex-col items-center justify-center bg-background/90 p-2 text-center border border-border shadow-sm">
+                        <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                          {dateObj.toLocaleDateString('en-US', { month: 'short' })}
+                        </span>
+                        <span className="text-2xl font-black font-stencil text-primary">
+                          {dateObj.getDate()}
+                        </span>
+                      </div>
+                    )}
                   </div>
+                  <h3 className="text-2xl font-bold uppercase font-stencil text-foreground group-hover:text-primary transition-colors">
+                    {event.name}
+                  </h3>
 
                   {/* Description */}
                   {event.description && (
@@ -86,9 +85,9 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
 
                   {/* Footer / Action */}
                   <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between">
-                     <button className="text-sm font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
-                       Read Brief &rarr;
-                     </button>
+                    <button className="text-sm font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
+                      Read Brief &rarr;
+                    </button>
                   </div>
                 </div>
               </div>
