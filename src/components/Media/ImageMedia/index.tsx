@@ -10,6 +10,7 @@ import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
+import { getClientSideURL } from '@/utilities/getURL'
 
 const { breakpoints } = cssVariables
 
@@ -42,9 +43,16 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     height = fullHeight!
     alt = altFromResource || ''
 
-    const cacheTag = resource.updatedAt
+    src = url || '';
+  }
 
-    src = getMediaUrl(url, cacheTag)
+  // NOTE: This check handles the case where the image is being rendered on the server (e.g. in a Hero or Block)
+  // getMediaUrl will return an absolute URL (http://localhost:3000/...), which causes
+  // next/image to fail with "upstream image resolved to private ip" when running locally.
+  // By converting it back to a relative URL, next/image treats it as a local asset.
+  const serverUrl = getClientSideURL()
+  if (typeof src === 'string' && src.startsWith(serverUrl)) {
+    src = src.replace(serverUrl, '')
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
