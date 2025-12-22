@@ -78,4 +78,25 @@ export const Media: CollectionConfig = {
       },
     ],
   },
+  hooks: {
+    afterRead: [
+      ({ doc }) => {
+        const folder = '/media'
+
+        if (doc?.filename) {
+          doc.url = `${folder}/${doc.filename}`
+        }
+
+        if (doc?.sizes) {
+          Object.keys(doc.sizes).forEach((size) => {
+            if (doc.sizes[size]?.filename) {
+              doc.sizes[size].url = `${folder}/${doc.sizes[size].filename}`
+            }
+          })
+        }
+
+        return doc
+      },
+    ],
+  },
 }
