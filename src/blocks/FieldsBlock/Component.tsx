@@ -4,6 +4,7 @@ import config from '@/payload.config'
 import type { Field } from '@/payload-types'
 import { Carousel } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
+import { Media } from '@/components/Media'  
 import Link from 'next/link'
 import Image from 'next/image'
 import RichText from '@/components/RichText'
@@ -20,7 +21,6 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
 
     fields = result.docs as Field[]
 
-    console.log(fields)
   } catch (error) {
     console.error('Error fetching fields:', error)
   }
@@ -49,12 +49,7 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                       {/* Media Section - Takes 2/5 on large screens */}
                       <div className="relative w-full h-[40rem] rounded-lg overflow-hidden">
                         {imageSrc ? (
-                          <Image
-                            src={imageSrc}
-                            alt={imageAlt}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                          <Media fill imgClassName="object-cover transition-transform duration-500 group-hover:scale-105" priority resource={img} />
                         ) : (
                           <div className="flex items-center justify-center w-full h-full text-muted-foreground">
                             No image
