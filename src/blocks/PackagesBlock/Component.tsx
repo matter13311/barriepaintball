@@ -11,7 +11,7 @@ export const PackagesBlock: React.FC<PackagesBlockProps> = ({ title, items }) =>
           {title}
         </h2>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items?.map((item, i) => (
           <div
             key={i}
@@ -21,9 +21,6 @@ export const PackagesBlock: React.FC<PackagesBlockProps> = ({ title, items }) =>
                 ? 'border-accent bg-accent/10 shadow-xl scale-105 z-10'
                 : 'border-border bg-card hover:border-primary/50',
             )}
-            style={{
-                clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)'
-            }}
           >
             {item.highlight && (
                 <div className="absolute top-0 right-0 bg-accent text-white uppercase text-xs font-bold px-3 py-1 tracking-wider">

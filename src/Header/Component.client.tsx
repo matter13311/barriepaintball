@@ -32,7 +32,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className="navbar container z-20 bg-secondary text-secondary-foreground border-b-4 border-primary shadow-lg"
+      className="navbar px-6 z-20 bg-secondary text-secondary-foreground border-b-4 border-primary shadow-lg"
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="py-4 flex justify-between items-center">
