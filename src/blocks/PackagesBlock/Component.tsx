@@ -44,10 +44,6 @@ export const PackagesBlock: React.FC<PackagesBlockProps> = ({ title, items }) =>
                 </li>
               ))}
             </ul>
-
-            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold uppercase py-3 tracking-widest skew-x-[-10deg] border border-primary-foreground/20">
-                <span className="inline-block skew-x-[10deg]">Book Now</span>
-            </button>
           </div>
         ))}
       </div>

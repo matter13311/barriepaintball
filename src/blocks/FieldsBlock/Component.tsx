@@ -47,7 +47,7 @@ export const FieldsBlock: React.FC<{ title?: string }> = async ({ title }) => {
                   return (
                     <div key={field.id} className="flex flex-col gap-6 w-full">
                       {/* Media Section - Takes 2/5 on large screens */}
-                      <div className="relative w-full h-[40rem] rounded-lg overflow-hidden">
+                      <div className="relative w-full h-[28rem] rounded-lg overflow-hidden">
                         {imageSrc ? (
                           <Media fill imgClassName="object-cover transition-transform duration-500 group-hover:scale-105" priority resource={img} />
                         ) : (

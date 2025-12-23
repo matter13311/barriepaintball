@@ -15,6 +15,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
+import NextTopLoader from 'nextjs-toploader'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const blackOps = Black_Ops_One({
@@ -22,6 +23,8 @@ const blackOps = Black_Ops_One({
   variable: '--font-black-ops',
   weight: '400',
 })
+
+
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -38,6 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
+        <NextTopLoader showSpinner={false} color="#A67959" />
         <Providers>
           <AdminBar
             adminBarProps={{
