@@ -8,6 +8,7 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { CallToBookBanner } from './CallToBookBanner'
 
 interface HeaderClientProps {
   data: Header
@@ -31,19 +32,22 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header
-      className="navbar px-6 z-20 bg-secondary text-secondary-foreground border-b-4 border-primary shadow-lg"
-      {...(theme ? { 'data-theme': theme } : {})}
-    >
-      <div className="py-4 flex justify-between items-center">
-        <Link href="/">
-          <div className="font-stencil text-2xl uppercase tracking-widest text-primary-foreground bg-primary px-4 py-1 skew-x-[-10deg]">
-             <span className="skew-x-[10deg] inline-block">Barrie Paintball</span>
-          </div>
-          {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" logo={logo} /> */}
-        </Link>
-        <HeaderNav data={data} />
-      </div>
-    </header>
+    <>
+      <CallToBookBanner />
+      <header
+        className="navbar px-6 z-20 bg-secondary text-secondary-foreground border-b-4 border-primary shadow-lg"
+        {...(theme ? { 'data-theme': theme } : {})}
+      >
+        <div className="py-4 flex justify-between items-center">
+          <Link href="/">
+            <div className="font-stencil text-2xl uppercase tracking-widest text-primary-foreground bg-primary px-4 py-1 skew-x-[-10deg]">
+              <span className="skew-x-[10deg] inline-block">Barrie Paintball</span>
+            </div>
+            {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" logo={logo} /> */}
+          </Link>
+          <HeaderNav data={data} />
+        </div>
+      </header>
+    </>
   )
 }
