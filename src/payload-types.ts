@@ -772,6 +772,7 @@ export interface Pricing {
   };
   priority?: number | null;
   categories?: (number | Category)[] | null;
+  highlight?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1425,6 +1426,7 @@ export interface PricingsSelect<T extends boolean = true> {
   content?: T;
   priority?: T;
   categories?: T;
+  highlight?: T;
   updatedAt?: T;
   createdAt?: T;
 }

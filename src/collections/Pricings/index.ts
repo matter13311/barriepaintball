@@ -37,6 +37,7 @@ export const Pricings: CollectionConfig = {
     {
       name: 'priority',
       type: 'number',
+      label: 'pricing with lowest priority will be displayed first',
       defaultValue: 1,
       min: 1,
     },
@@ -46,5 +47,10 @@ export const Pricings: CollectionConfig = {
       hasMany: true,
       relationTo: 'categories',
     },
+    {
+      name: 'highlight',
+      type: 'checkbox',
+      label: 'Highlight (Most Popular)'
+    }
   ],
 }

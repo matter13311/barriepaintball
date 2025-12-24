@@ -41,11 +41,20 @@ export const PricingsBlock: React.FC<{ title?: string }> = async ({ title }) => 
             <div
               key={pricing.id}
               className={cn(
-                'relative flex flex-col p-6 border-2 bg-card transition-all duration-300 hover:border-primary/50',
-                'border-border',
+                'relative flex flex-col p-6 border-2 transition-all duration-300',
+                pricing.highlight
+                  ? 'border-accent bg-accent/10 shadow-xl scale-105 z-10'
+                  : 'border-border bg-card hover:border-primary/50',
               )}
             >
-              <h3 className="text-2xl font-bold uppercase mb-4 font-stencil ">{pricing.name}</h3>
+              {pricing.highlight && (
+                <div className="absolute top-0 right-0 bg-accent text-white uppercase text-xs font-bold px-3 py-1 tracking-wider">
+                  Most Popular
+                </div>
+              )}
+              <h3 className="text-2xl font-bold uppercase mb-4 font-stencil text-primary">
+                {pricing.name}
+              </h3>
 
               {pricing.content && (
                 <div className="prose prose-sm dark:prose-invert mb-4 flex-1">
