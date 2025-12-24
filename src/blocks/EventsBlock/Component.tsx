@@ -3,6 +3,8 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import type { Event } from '@/payload-types'
 import RichText from '@/components/RichText'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 import { CalendarDays } from 'lucide-react'
 
@@ -33,7 +35,7 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
       {/* Block Title */}
       <div className="mb-12 text-center">
         <h2 className="text-4xl font-stencil uppercase tracking-widest text-primary dark:text-foreground">
-          {title || 'Upcoming Deployments'}
+          {title || 'Upcoming Events'}
         </h2>
         <div className="mx-auto mt-4 h-1 w-24 bg-primary" />
       </div>
@@ -85,9 +87,9 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
 
                   {/* Footer / Action */}
                   <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between">
-                    <button className="text-sm font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
+                    <Link href={`/events/${event.slug}`} className="text-sm font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
                       Read Brief &rarr;
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -101,6 +103,14 @@ export const EventsBlock: React.FC<{ title?: string }> = async ({ title }) => {
             <p className="text-sm text-muted">Check back later for deployment orders.</p>
           </div>
         )}
+      </div>
+
+      <div className="mt-12 text-center">
+        <Button asChild size="lg" className="font-stencil tracking-widest text-lg uppercase px-8">
+            <Link href="/events">
+                View All Events
+            </Link>
+        </Button>
       </div>
     </section>
   )

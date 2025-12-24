@@ -826,6 +826,7 @@ export interface Event {
     };
     [k: string]: unknown;
   } | null;
+  slug: string;
   publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1450,6 +1451,7 @@ export interface EventsSelect<T extends boolean = true> {
   name?: T;
   eventDate?: T;
   description?: T;
+  slug?: T;
   publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;

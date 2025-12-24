@@ -2,6 +2,12 @@ import { CollectionConfig } from "payload";
 
 export const Events: CollectionConfig = {
     slug: "events",
+    admin: {
+        useAsTitle: 'name',
+    },
+    defaultPopulate: {
+        slug: true,
+    },
     fields: [
         {
             name: "name",
@@ -14,6 +20,11 @@ export const Events: CollectionConfig = {
         {
             name: "description",    
             type: "richText",
+        },
+        {
+            name: 'slug',
+            type: 'text',
+            required: true, 
         },
         {
             name: 'publishedAt',
